@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Hoàng Quân | Digital Bio & 2048</title>
+    <title>Hoàng Quân | Digital Bio & 2048 Pro</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -25,91 +25,110 @@
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        /* 2048 Container - Quan trọng: touch-action: none để vuốt được */
+
+        /* --- HIỆU ỨNG GAME 2048 --- */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
+            gap: 10px;
             background: rgba(255, 255, 255, 0.05);
-            padding: 8px;
-            border-radius: 12px;
-            width: 280px;
-            height: 280px;
+            padding: 10px;
+            border-radius: 16px;
+            width: 300px;
+            height: 300px;
             margin: 0 auto;
             touch-action: none; 
-            user-select: none;
+            position: relative;
         }
+
         .tile {
-            width: 60px;
-            height: 60px;
-            border-radius: 8px;
+            width: 62.5px;
+            height: 62.5px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 800;
-            font-size: 18px;
-            transition: all 0.15s ease-in-out;
-            background: rgba(255, 255, 255, 0.05);
+            font-size: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            /* Hiệu ứng di chuyển mượt */
+            transition: transform 150ms ease-in-out, background 200ms shadow 200ms;
         }
-        /* Colors */
+
+        /* Hiệu ứng khi ô mới xuất hiện */
+        @keyframes pop {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .tile-new {
+            animation: pop 200ms ease-out;
+        }
+
+        /* Hiệu ứng khi gộp 2 ô (Merge) */
+        @keyframes merge-pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+        .tile-merged {
+            animation: merge-pop 200ms ease-in-out;
+        }
+
+        /* Màu sắc các ô số */
         .tile-2 { background: #1e293b; color: #94a3b8; }
         .tile-4 { background: #334155; color: #cbd5e1; }
-        .tile-8 { background: #0ea5e9; color: white; box-shadow: 0 0 10px rgba(14, 165, 233, 0.4); }
+        .tile-8 { background: #0ea5e9; color: white; box-shadow: 0 0 15px rgba(14, 165, 233, 0.3); }
         .tile-16 { background: #0284c7; color: white; }
         .tile-32 { background: #f43f5e; color: white; }
         .tile-64 { background: #e11d48; color: white; }
-        .tile-128 { background: #eab308; color: white; font-size: 16px; box-shadow: 0 0 15px rgba(234, 179, 8, 0.4); }
-        .tile-256 { background: #d97706; color: white; font-size: 16px; }
-        .tile-512 { background: #8b5cf6; color: white; font-size: 16px; }
-        .tile-1024 { background: #7c3aed; color: white; font-size: 14px; }
-        .tile-2048 { background: #22c55e; color: white; font-size: 14px; box-shadow: 0 0 20px rgba(34, 197, 94, 0.5); }
+        .tile-128 { background: #eab308; color: white; box-shadow: 0 0 20px rgba(234, 179, 8, 0.3); font-size: 18px; }
+        .tile-2048 { background: #22c55e; color: white; box-shadow: 0 0 25px rgba(34, 197, 94, 0.5); }
     </style>
 </head>
 <body class="flex flex-col items-center py-10 px-6">
 
     <header class="text-center mb-8" data-aos="fade-down">
-        <div class="relative inline-block mb-4">
-            <img src="https://ui-avatars.com/api/?name=Hoang+Quan&background=0ea5e9&color=fff&size=150" 
-                 class="w-24 h-24 rounded-full border-4 border-sky-500/20 shadow-xl">
-        </div>
+        <img src="https://ui-avatars.com/api/?name=Hoang+Quan&background=0ea5e9&color=fff&size=150" 
+             class="w-24 h-24 rounded-full border-4 border-sky-500/20 mx-auto mb-4">
         <h1 class="text-2xl font-extrabold tracking-tight">Hoàng Quân</h1>
-        <p class="text-sky-400 font-semibold text-[10px] uppercase tracking-[0.2em]">IT Student • Cần Thơ</p>
+        <p class="text-sky-400 font-bold text-[10px] uppercase tracking-widest mt-1">Digital Creator • Cần Thơ</p>
     </header>
 
     <main class="w-full max-w-sm space-y-3 mb-10">
         <a href="#" class="glass flex items-center p-4 rounded-2xl hover:bg-white/5 transition-all" data-aos="fade-up">
             <i data-lucide="github" class="w-5 h-5 text-slate-400"></i>
-            <span class="ml-4 font-bold text-sm text-slate-200">GitHub Projects</span>
-        </a>
-        <a href="#" class="glass flex items-center p-4 rounded-2xl hover:bg-white/5 transition-all" data-aos="fade-up" data-aos-delay="100">
-            <i data-lucide="facebook" class="w-5 h-5 text-blue-400"></i>
-            <span class="ml-4 font-bold text-sm text-slate-200">Facebook</span>
+            <span class="ml-4 font-bold text-sm">GitHub</span>
         </a>
     </main>
 
     <section class="w-full max-w-sm" data-aos="fade-up" data-aos-delay="200">
-        <div class="glass p-5 rounded-[2.5rem] border-sky-500/10">
-            <div class="flex justify-between items-end mb-4 px-2">
+        <div class="glass p-6 rounded-[2.5rem] border-sky-500/10 shadow-2xl">
+            <div class="flex justify-between items-end mb-6">
                 <div>
-                    <h3 class="text-[10px] font-black text-sky-500 uppercase italic">Digital Puzzle</h3>
-                    <p class="text-lg font-extrabold">2048 Edition</p>
+                    <h3 class="text-[10px] font-black text-sky-500 uppercase italic">Skill Test</h3>
+                    <p class="text-xl font-black">2048 Pro</p>
                 </div>
-                <div class="bg-white/5 px-4 py-1 rounded-full text-right">
-                    <p class="text-[8px] text-slate-500 uppercase font-bold">Score</p>
-                    <span id="game-score" class="text-md font-black">0</span>
+                <div class="text-right">
+                    <p class="text-[8px] text-slate-500 uppercase font-black">Score</p>
+                    <span id="game-score" class="text-xl font-black text-white">0</span>
                 </div>
             </div>
 
             <div class="relative">
-                <div id="grid" class="grid-container"></div>
+                <div id="grid" class="grid-container">
+                    </div>
                 
-                <div id="game-over" class="absolute inset-0 bg-black/90 rounded-xl flex flex-col items-center justify-center hidden z-20">
-                    <p class="text-sky-400 font-bold text-xs mb-1 uppercase tracking-widest">Kết thúc!</p>
-                    <h2 class="text-3xl font-black mb-6">GAME OVER</h2>
-                    <button onclick="initGame()" class="bg-sky-500 text-white px-8 py-3 rounded-full font-bold shadow-lg shadow-sky-500/30 active:scale-95 transition-all">CHƠI LẠI</button>
+                <div id="game-over" class="absolute inset-0 bg-black/90 rounded-2xl flex flex-col items-center justify-center hidden z-20">
+                    <h2 class="text-3xl font-black mb-6">THUA RỒI!</h2>
+                    <button onclick="initGame()" class="bg-sky-500 text-white px-8 py-3 rounded-full font-bold shadow-lg shadow-sky-500/30">CHƠI LẠI</button>
                 </div>
             </div>
-            <p class="text-center text-[10px] text-slate-500 mt-4 font-bold uppercase tracking-widest">Vuốt sang các hướng để ghép</p>
+            
+            <div class="mt-6 flex justify-center">
+                <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest flex items-center">
+                    <i data-lucide="hand" class="w-3 h-3 mr-2"></i> Vuốt mượt mà để ghép số
+                </p>
+            </div>
         </div>
     </section>
 
@@ -136,31 +155,32 @@
                 gridDisplay.appendChild(square);
                 squares.push(square);
             }
-            generate(); generate();
+            generate('new'); generate('new');
         }
 
-        function generate() {
+        function generate(type) {
             let available = squares.filter(s => s.innerHTML === "");
             if (available.length > 0) {
                 let randomSquare = available[Math.floor(Math.random() * available.length)];
                 randomSquare.innerHTML = 2;
+                if(type === 'new') randomSquare.classList.add('tile-new');
                 updateStyles();
-                checkForGameOver();
             }
         }
 
         function updateStyles() {
             squares.forEach(square => {
                 const val = square.innerHTML;
+                // Giữ lại class 'tile', thêm class số, và bỏ các class animation cũ
                 square.className = 'tile' + (val ? ` tile-${val}` : '');
             });
         }
 
-        // Logic di chuyển (Giữ nguyên và tối ưu)
-        function slide(row) {
+        function slide(row, direction) {
             let arr = row.filter(num => num);
             let missing = 4 - arr.length;
-            return row.some(n => n !== 0) ? (arguments[1] === 'left' ? arr.concat(Array(missing).fill(0)) : Array(missing).fill(0).concat(arr)) : row;
+            let zeros = Array(missing).fill(0);
+            return direction === 'left' ? arr.concat(zeros) : zeros.concat(arr);
         }
 
         function combine(row) {
@@ -170,73 +190,85 @@
                     row[i+1] = 0;
                     score += row[i];
                     scoreDisplay.innerHTML = score;
+                    // Đánh dấu để thêm hiệu ứng Merge sau khi updateStyles
+                    return {row, mergedIdx: i};
                 }
             }
-            return row;
+            return {row, mergedIdx: -1};
         }
 
         function move(direction) {
             let hasChanged = false;
+            let mergedIndices = [];
+
             for (let i = 0; i < 4; i++) {
                 let line = [];
                 for (let j = 0; j < 4; j++) {
-                    line.push(parseInt(squares[direction === 'left' || direction === 'right' ? (i * 4 + j) : (j * 4 + i)].innerHTML) || 0);
+                    let idx = (direction === 'left' || direction === 'right') ? (i * 4 + j) : (j * 4 + i);
+                    line.push(parseInt(squares[idx].innerHTML) || 0);
                 }
 
                 let oldLine = [...line];
-                if (direction === 'right' || direction === 'down') line.reverse();
-                line = slide(combine(slide(line, 'left')), 'left');
-                if (direction === 'right' || direction === 'down') line.reverse();
+                let isReverse = (direction === 'right' || direction === 'down');
+                
+                if (isReverse) line.reverse();
+                let res = combine(slide(line, 'left'));
+                line = slide(res.row, 'left');
+                if (isReverse) line.reverse();
 
                 for (let j = 0; j < 4; j++) {
-                    let idx = direction === 'left' || direction === 'right' ? (i * 4 + j) : (j * 4 + i);
-                    squares[idx].innerHTML = line[j] || "";
+                    let idx = (direction === 'left' || direction === 'right') ? (i * 4 + j) : (j * 4 + i);
                     if (oldLine[j] !== line[j]) hasChanged = true;
+                    squares[idx].innerHTML = line[j] || "";
+                    
+                    // Thêm hiệu ứng chớp nhoáng khi gộp
+                    if (res.mergedIdx !== -1 && j === (isReverse ? 3 - res.mergedIdx : res.mergedIdx)) {
+                        squares[idx].classList.add('tile-merged');
+                    }
                 }
             }
-            if (hasChanged) generate();
+
+            if (hasChanged) {
+                setTimeout(() => generate('new'), 100);
+            } else {
+                checkGameOver();
+            }
             updateStyles();
         }
 
-        // Control Keys
-        document.addEventListener('keyup', e => {
-            if (e.keyCode === 37) move('left');
-            else if (e.keyCode === 38) move('up');
-            else if (e.keyCode === 39) move('right');
-            else if (e.keyCode === 40) move('down');
-        });
-
-        // --- FIX VUỐT TRÊN ĐIỆN THOẠI ---
+        // --- HỆ THỐNG VUỐT (SWIPE) CHUYÊN NGHIỆP ---
         let startX, startY;
         gridDisplay.addEventListener('touchstart', e => {
             startX = e.touches[0].clientX;
             startY = e.touches[0].clientY;
         }, {passive: false});
 
-        gridDisplay.addEventListener('touchmove', e => {
-            e.preventDefault(); // CHẶN CUỘN TRANG KHI ĐANG VUỐT GAME
-        }, {passive: false});
+        gridDisplay.addEventListener('touchmove', e => e.preventDefault(), {passive: false});
 
         gridDisplay.addEventListener('touchend', e => {
             if (!startX || !startY) return;
             let diffX = e.changedTouches[0].clientX - startX;
             let diffY = e.changedTouches[0].clientY - startY;
+            let threshold = 30; // Ngưỡng vuốt tối thiểu
 
             if (Math.abs(diffX) > Math.abs(diffY)) {
-                if (Math.abs(diffX) > 30) move(diffX > 0 ? 'right' : 'left');
+                if (Math.abs(diffX) > threshold) move(diffX > 0 ? 'right' : 'left');
             } else {
-                if (Math.abs(diffY) > 30) move(diffY > 0 ? 'down' : 'up');
+                if (Math.abs(diffY) > threshold) move(diffY > 0 ? 'down' : 'up');
             }
             startX = null; startY = null;
         });
 
-        function checkForGameOver() {
+        document.addEventListener('keyup', e => {
+            if (e.keyCode === 37) move('left');
+            if (e.keyCode === 38) move('up');
+            if (e.keyCode === 39) move('right');
+            if (e.keyCode === 40) move('down');
+        });
+
+        function checkGameOver() {
             let zeros = squares.filter(s => s.innerHTML === "").length;
-            if (zeros === 0) {
-                // Kiểm tra xem còn nước đi nào không
-                // (Đơn giản hóa: hiện thông báo thua nếu đầy ô và không generate được tiếp)
-                gameOverDisplay.classList.remove('hidden');
-            }
+            if (zeros === 0) gameOverDisplay.classList.remove('hidden');
         }
 
         initGame();
