@@ -3,134 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hữu Duy Bio - Đừng Có Vào!</title>
+    <title>Đặt Vé Hay Là Nhịn - Hữu Duy Cinema</title>
     <style>
-        /* PHONG CÁCH CỤC SÚC BỞI ANH AI */
+        /* CSS CHƠI HỆ CỤC SÚC */
+        :root {
+            --primary: #ff0055;
+            --bg: #0f0f0f;
+            --seat-empty: #444;
+            --seat-selected: #00ff88;
+            --seat-occupied: #222;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradient 10s ease infinite; /* Nền chạy nhảy cho chóng mặt chơi */
+            background-color: var(--bg);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
+            justify-content: center;
+            min-height: 100vh;
             margin: 0;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+        h1 { margin-bottom: 5px; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); }
+        p.subtitle { margin-top: 0; font-size: 14px; color: #888; font-style: italic; }
 
-        .card {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 2.5rem;
-            border-radius: 30px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-            width: 350px;
+        /* MÀN HÌNH */
+        .screen {
+            background-color: #fff;
+            height: 70px;
+            width: 100%;
+            max-width: 400px;
+            margin: 30px 0;
+            transform: rotateX(-45deg);
+            box-shadow: 0 3px 20px rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
             text-align: center;
-            border: 5px solid #000;
+            color: #000;
+            line-height: 70px;
+            font-weight: bold;
+        }
+
+        /* PHÒNG VÉ */
+        .container { perspective: 1000px; margin-bottom: 30px; }
+
+        .row { display: flex; justify-content: center; }
+
+        .seat {
+            background-color: var(--seat-empty);
+            height: 20px;
+            width: 25px;
+            margin: 5px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .seat:hover { transform: scale(1.2); background-color: #666; }
+
+        .seat.selected { background-color: var(--seat-selected); box-shadow: 0 0 10px var(--seat-selected); }
+
+        .seat.occupied { background-color: var(--seat-occupied); cursor: not-allowed; }
+
+        /* CHÚ THÍCH */
+        .showcase {
+            list-style-type: none;
+            display: flex;
+            padding: 10px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 10px;
+        }
+
+        .showcase li { display: flex; align-items: center; margin: 0 10px; font-size: 12px; }
+        .showcase li .seat { cursor: default; margin-right: 5px; }
+
+        /* TỔNG TIỀN */
+        .total-box { font-size: 18px; font-weight: bold; }
+        #total { color: var(--primary); font-size: 24px; }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: var(--primary);
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
             transition: 0.3s;
         }
 
-        .card:hover {
-            transform: rotate(2deg) scale(1.05); /* Di chuột vào là nó lệch lạc ngay */
-        }
-
-        .avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: #000;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 50px;
-            color: #fff;
-            font-weight: 900;
-            border: 6px double #ff0055;
-            animation: shake 0.5s infinite; /* Avatar rung bần bật */
-        }
-
-        @keyframes shake {
-            0% { transform: translate(1px, 1px) rotate(0deg); }
-            10% { transform: translate(-1px, -2px) rotate(-1deg); }
-            20% { transform: translate(-3px, 0px) rotate(1deg); }
-            30% { transform: translate(3px, 2px) rotate(0deg); }
-            40% { transform: translate(1px, -1px) rotate(1deg); }
-            50% { transform: translate(-1px, 2px) rotate(-1deg); }
-        }
-
-        h1 {
-            margin: 10px 0;
-            font-size: 28px;
-            color: #000;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .bio-text {
-            color: #ff0055;
-            font-weight: bold;
-            font-style: italic;
-            margin-bottom: 1.5rem;
-        }
-
-        .links {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .link-btn {
-            text-decoration: none;
-            background: #000;
-            color: white;
-            padding: 15px;
-            border-radius: 50px;
-            font-weight: 800;
-            transition: 0.2s;
-            border: 2px solid transparent;
-        }
-
-        .link-btn:hover {
-            background: #fff;
-            color: #000;
-            border: 2px solid #000;
-            box-shadow: 5px 5px 0px #ff0055;
-        }
-
-        /* Nút đặc biệt cho GitHub của em */
-        .github-special {
-            background: #24292e !important;
-            animation: pulse 1s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(36, 41, 46, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(36, 41, 46, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(36, 41, 46, 0); }
-        }
+        button:hover { transform: scale(1.1); box-shadow: 0 0 20px var(--primary); }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <div class="avatar">DZ</div> <h1>Hữu Duy Official</h1>
-        <p class="bio-text">Đéo có gì ở đây đâu, đừng có bấm!</p>
-        
-        <div class="links">
-            <a href="https://facebook.com" class="link-btn" target="_blank">Nơi Bốc Phét (Facebook)</a>
-            <a href="https://zalo.me" class="link-btn" target="_blank">Nhắn Tin Đòi Nợ (Zalo)</a>
-            <a href="https://instagram.com" class="link-btn" target="_blank">Sống Ảo Tí (Insta)</a>
-            <a href="https://github.com/hoangquandeptrai" class="link-btn github-special" target="_blank">Kho Code Lỏ (GitHub)</a>
+    <h1>HỮU DUY CINEMA</h1>
+    <p class="subtitle">Đéo đặt vé thì đi về, đừng có nhìn!</p>
+
+    <ul class="showcase">
+        <li><div class="seat"></div> <small>Còn trống</small></li>
+        <li><div class="seat selected"></div> <small>Đang chọn</small></li>
+        <li><div class="seat occupied"></div> <small>Hết chỗ</small></li>
+    </ul>
+
+    <div class="container">
+        <div class="screen">MÀN HÌNH ĐÂY EM</div>
+
+        <div class="row">
+            <div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div>
         </div>
-        
-        <p style="margin-top: 20px; font-size: 10px; color: #999;">© 2026 - Bản quyền thuộc về đại ca Duy</p>
+        <div class="row">
+            <div class="seat"></div><div class="seat occupied"></div><div class="seat occupied"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div>
+        </div>
+        <div class="row">
+            <div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat occupied"></div><div class="seat"></div>
+        </div>
+        <div class="row">
+            <div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div>
+        </div>
     </div>
 
+    <div class="total-box">
+        Đã chọn <span id="count">0</span> ghế. Tổng tiền: <span id="total">0</span> VNĐ
+    </div>
+
+    <button onclick="bookTicket()">Đặt Vé Ngay!</button>
+
+    <script>
+        const container = document.querySelector('.container');
+        const seats = document.querySelectorAll('.row .seat:not(.occupied)');
+        const count = document.getElementById('count');
+        const total = document.getElementById('total');
+        const ticketPrice = 90000; // Giá vé 90k cho nó rẻ
+
+        // Hàm cập nhật số lượng và tiền
+        function updateSelectedCount() {
+            const selectedSeats = document.querySelectorAll('.row .seat.selected');
+            const selectedSeatsCount = selectedSeats.length;
+            
+            count.innerText = selectedSeatsCount;
+            total.innerText = (selectedSeatsCount * ticketPrice).toLocaleString('vi-VN');
+        }
+
+        // Sự kiện click chọn ghế
+        container.addEventListener('click', (e) => {
+            if (e.target.classList.contains('seat') && !e.target.classList.contains('occupied')) {
+                e.target.classList.toggle('selected');
+                updateSelectedCount();
+            }
+        });
+
+        // Nút đặt vé ảo ma
+        function bookTicket() {
+            const selectedCount = document.querySelectorAll('.row .seat.selected').length;
+            if (selectedCount > 0) {
+                alert('Chúc mừng em đã tốn ' + (selectedCount * ticketPrice).toLocaleString('vi-VN') + ' VNĐ cho đại ca Duy!');
+                location.reload(); // Đặt xong cho load lại trang luôn
+            } else {
+                alert('Mày đéo chọn ghế thì đặt cái gì?');
+            }
+        }
+    </script>
+
 </body>
+</html>
