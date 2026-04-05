@@ -4,143 +4,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Huu Duy | Software Developer Bio</title>
+    <title>Huu Duy | Software Engineer Portfolio</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 
     <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: 'Inter', sans-serif;
-            color: #212529;
-            display: flex;
-            align-items: center;
-            min-height: 100vh;
+        :root {
+            --bg-color: #f0f2f5;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            --primary-gradient: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
         }
 
-        .bio-card {
-            max-width: 450px;
-            width: 100%;
-            background: #ffffff;
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: #1d1d1f;
+        }
+
+        .bento-card {
             border: none;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border-radius: 24px;
+            background: #ffffff;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .bg-gradient-primary {
+            background: var(--primary-gradient);
+        }
+
+        .hover-scale {
             transition: transform 0.3s ease;
         }
 
-        .bio-card:hover {
-            transform: translateY(-5px);
+        .hover-scale:hover {
+            transform: scale(1.05);
         }
 
-        .profile-img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 4px solid #fff;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-top: -50px;
-        }
-
-        .btn-link-custom {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px;
-            border-radius: 12px;
-            font-weight: 600;
-            text-decoration: none;
+        .btn-bento {
+            background: #f5f5f7;
+            border-radius: 16px;
             transition: all 0.2s ease;
-            border: 1px solid #e9ecef;
-            background-color: #fff;
-            color: #495057;
-            margin-bottom: 12px;
+            border: 1px solid transparent;
         }
 
-        .btn-link-custom:hover {
-            background-color: #0d6efd;
-            color: #fff;
+        .btn-bento:hover {
+            background: #fff;
             border-color: #0d6efd;
-            box-shadow: 0 4px 12px rgba(13, 110, 253, 0.2);
-        }
-
-        .btn-link-custom i {
-            margin-right: 10px;
-            font-size: 1.1rem;
-        }
-
-        .social-icons a {
-            font-size: 1.5rem;
-            color: #adb5bd;
-            transition: color 0.2s;
-            margin: 0 10px;
-        }
-
-        .social-icons a:hover {
             color: #0d6efd;
         }
 
         .badge-skill {
-            background-color: #e9ecef;
+            background: #e9ecef;
             color: #495057;
-            font-weight: 500;
-            padding: 5px 12px;
+            font-weight: 600;
+            padding: 8px 16px;
             border-radius: 50px;
-            font-size: 0.8rem;
-            margin: 2px;
+            font-size: 0.75rem;
+        }
+
+        /* Animation cho xịn */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out forwards;
         }
     </style>
 </head>
 
-<body>
+<body class="py-5 d-flex align-items-center min-vh-100">
 
-    <div class="container d-flex justify-content-center">
-        <div class="card bio-card p-4 text-center">
-            <div
-                style="height: 80px; background: linear-gradient(90deg, #0d6efd 0%, #6610f2 100%); border-radius: 15px;">
+    <div class="container animate-in" style="max-width: 700px;">
+        <div class="row g-3">
+            
+            <div class="col-md-8 col-12">
+                <div class="card bento-card p-4 h-100 d-flex flex-column justify-content-center">
+                    <h1 class="fw-800 mb-2">Hữu Duy <span class="text-primary">.</span></h1>
+                    <p class="text-secondary mb-0">Software Engineering Student. <br> Thích build mấy thứ lỏ nhưng chạy ngon.</p>
+                </div>
             </div>
 
-            <div class="d-flex justify-content-center">
-                <img src="data:image/jpeg;base64,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"
-                    alt="Huu Duy" class="profile-img">
+            <div class="col-md-4 col-12 text-center">
+                <div class="card bento-card h-100 bg-gradient-primary d-flex align-items-center justify-content-center p-4">
+                    <img src="https://ui-avatars.com/api/?name=Huu+Duy&background=fff&color=0d6efd&size=128" 
+                         class="rounded-circle shadow-lg hover-scale" style="width: 80px; height: 80px;" alt="Avatar">
+                </div>
             </div>
 
-            <div class="card-body mt-3">
-                <h2 class="fw-bold mb-1">Hữu Duy</h2>
-                <p class="text-muted small mb-3">Software Engineering Student @ Can Tho</p>
-
-                <div class="mb-4">
-                    <span class="badge badge-skill">HTML5</span>
-                    <span class="badge badge-skill">CSS3</span>
-                    <span class="badge badge-skill">Bootstrap 5</span>
-                    <span class="badge badge-skill">Java</span>
+            <div class="col-12">
+                <div class="card bento-card p-4">
+                    <h6 class="fw-bold mb-3 text-uppercase small text-muted">Kỹ năng hiện có</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge-skill">Java & Spring Boot</span>
+                        <span class="badge-skill">Bootstrap 5</span>
+                        <span class="badge-skill">JavaScript</span>
+                        <span class="badge-skill">SQL Server</span>
+                        <span class="badge-skill">Git / GitHub</span>
+                    </div>
                 </div>
-
-                <div class="d-grid">
-                    <a href="https://yuudesu.id.vn" class="btn-link-custom">
-                        <i class="fa-solid fa-earth-asia"></i> Website Chính Thức
-                    </a>
-                    <a href="https://github.com/hoangquandeptrai" class="btn-link-custom">
-                        <i class="fa-brands fa-github"></i> GitHub Project
-                    </a>
-                    <a href="#" class="btn-link-custom">
-                        <i class="fa-solid fa-briefcase"></i> Resume / CV
-                    </a>
-                    <a href="mailto:contact@yuudesu.id.vn" class="btn-link-custom">
-                        <i class="fa-solid fa-envelope"></i> Liên hệ công việc
-                    </a>
-                </div>
-
-                <div class="social-icons mt-4">
-                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                </div>
-
-                <p class="mt-4 text-muted" style="font-size: 0.75rem;">© 2026 Hữu Duy. Build with Bootstrap 5.</p>
             </div>
+
+            <div class="col-6 col-md-3">
+                <a href="#" class="card bento-card p-4 text-center text-decoration-none h-100">
+                    <i class="fa-brands fa-facebook fa-2x text-primary mb-2"></i>
+                    <div class="small fw-bold text-dark">Facebook</div>
+                </a>
+            </div>
+            <div class="col-6 col-md-3">
+                <a href="#" class="card bento-card p-4 text-center text-decoration-none h-100">
+                    <i class="fa-brands fa-instagram fa-2x text-danger mb-2"></i>
+                    <div class="small fw-bold text-dark">Instagram</div>
+                </a>
+            </div>
+            <div class="col-6 col-md-3">
+                <a href="https://github.com/hoangquandeptrai" class="card bento-card p-4 text-center text-decoration-none h-100">
+                    <i class="fa-brands fa-github fa-2x text-dark mb-2"></i>
+                    <div class="small fw-bold text-dark">GitHub</div>
+                </a>
+            </div>
+            <div class="col-6 col-md-3">
+                <a href="mailto:contact@yuudesu.id.vn" class="card bento-card p-4 text-center text-decoration-none h-100">
+                    <i class="fa-solid fa-envelope fa-2x text-warning mb-2"></i>
+                    <div class="small fw-bold text-dark">Email</div>
+                </a>
+            </div>
+
+            <div class="col-12">
+                <a href="#" class="card bento-card p-3 d-flex flex-row align-items-center text-decoration-none bg-dark text-white hover-lift">
+                    <div class="bg-primary rounded-3 p-2 me-3">
+                        <i class="fa-solid fa-ticket-alt"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <div class="fw-bold">Hữu Duy Cinema</div>
+                        <div class="small opacity-50">Web đặt vé xem phim xịn sò</div>
+                    </div>
+                    <i class="fa-solid fa-arrow-right-long me-2"></i>
+                </a>
+            </div>
+
+            <div class="col-12 text-center mt-3">
+                <p class="small text-muted fw-bold">© 2026 HUU DUY | BUILD WITH BOOTSTRAP 5</p>
+            </div>
+
         </div>
     </div>
 
