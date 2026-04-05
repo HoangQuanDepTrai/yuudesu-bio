@@ -3,169 +3,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đặt Vé Hay Là Nhịn - Hữu Duy Cinema</title>
+    <title>Sàn Giao Dịch Đổi Tiền "Đại Ca Duy" - HUU DUY MONEY</title>
     <style>
-        /* CSS CHƠI HỆ CỤC SÚC */
+        /* PHONG CÁCH CỤC SÚC BỞI ANH AI */
         :root {
-            --primary: #ff0055;
-            --bg: #0f0f0f;
-            --seat-empty: #444;
-            --seat-selected: #00ff88;
-            --seat-occupied: #222;
+            --primary: #ffcc00; /* Màu vàng kim loại cho sang */
+            --bg: #1a1a1a; /* Nền tối */
+            --text: #fff;
+            --accent: #ff4d4d; /* Màu đỏ nhấn mạnh */
         }
 
         body {
             background-color: var(--bg);
-            color: white;
-            font-family: 'Segoe UI', Tahoma, sans-serif;
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             min-height: 100vh;
             margin: 0;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
-        h1 { margin-bottom: 5px; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); }
-        p.subtitle { margin-top: 0; font-size: 14px; color: #888; font-style: italic; }
-
-        /* MÀN HÌNH */
-        .screen {
-            background-color: #fff;
-            height: 70px;
-            width: 100%;
-            max-width: 400px;
-            margin: 30px 0;
-            transform: rotateX(-45deg);
-            box-shadow: 0 3px 20px rgba(255, 255, 255, 0.7);
-            border-radius: 50%;
+        .container {
+            background: #262626;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            width: 380px;
             text-align: center;
-            color: #000;
-            line-height: 70px;
+            border: 4px solid var(--primary);
+            transition: 0.3s;
+        }
+
+        .container:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 50px rgba(255, 204, 0, 0.3);
+        }
+
+        h1 {
+            color: var(--primary);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0 #000;
+        }
+
+        p.subtitle {
+            margin-top: 0;
+            font-size: 13px;
+            color: #aaa;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        /* GIAO DIỆN CHUYỂN ĐỔI */
+        .converter-box {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        label {
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 5px;
             font-weight: bold;
         }
 
-        /* PHÒNG VÉ */
-        .container { perspective: 1000px; margin-bottom: 30px; }
-
-        .row { display: flex; justify-content: center; }
-
-        .seat {
-            background-color: var(--seat-empty);
-            height: 20px;
-            width: 25px;
-            margin: 5px;
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
-            cursor: pointer;
+        input {
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #444;
+            background-color: #333;
+            color: var(--text);
+            font-size: 18px;
+            font-weight: bold;
             transition: 0.2s;
         }
 
-        .seat:hover { transform: scale(1.2); background-color: #666; }
-
-        .seat.selected { background-color: var(--seat-selected); box-shadow: 0 0 10px var(--seat-selected); }
-
-        .seat.occupied { background-color: var(--seat-occupied); cursor: not-allowed; }
-
-        /* CHÚ THÍCH */
-        .showcase {
-            list-style-type: none;
-            display: flex;
-            padding: 10px;
-            background: rgba(0,0,0,0.5);
-            border-radius: 10px;
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
         }
 
-        .showcase li { display: flex; align-items: center; margin: 0 10px; font-size: 12px; }
-        .showcase li .seat { cursor: default; margin-right: 5px; }
+        .swap-icon {
+            font-size: 30px;
+            color: var(--primary);
+            cursor: pointer;
+            margin: 10px 0;
+            transition: 0.3s;
+        }
 
-        /* TỔNG TIỀN */
-        .total-box { font-size: 18px; font-weight: bold; }
-        #total { color: var(--primary); font-size: 24px; }
+        .swap-icon:hover {
+            transform: rotate(180deg) scale(1.2);
+        }
 
+        /* KẾT QUẢ */
+        .result-box {
+            background-color: #111;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px dashed var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .result-text {
+            font-size: 16px;
+            color: #ccc;
+            margin-bottom: 5px;
+        }
+
+        #result-value {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--primary);
+            text-shadow: 0 0 15px var(--primary);
+        }
+
+        /* NÚT BẤM */
         button {
-            margin-top: 20px;
-            padding: 12px 30px;
-            background: var(--primary);
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, var(--primary), #ffa500);
             border: none;
-            color: white;
-            font-weight: bold;
+            color: #000;
+            font-size: 18px;
+            font-weight: 800;
             border-radius: 50px;
             cursor: pointer;
             text-transform: uppercase;
             transition: 0.3s;
+            box-shadow: 0 5px 0 #b38600;
         }
 
-        button:hover { transform: scale(1.1); box-shadow: 0 0 20px var(--primary); }
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 0 #b38600, 0 10px 20px rgba(255, 204, 0, 0.4);
+        }
+
+        button:active {
+            transform: translateY(2px);
+            box-shadow: 0 3px 0 #b38600;
+        }
+
+        /* BANNER QUẢNG CÁO LỎ */
+        .ad-banner {
+            margin-top: 25px;
+            padding: 10px;
+            background-color: #000;
+            border-radius: 5px;
+            font-size: 11px;
+            color: #ff4d4d;
+            font-weight: bold;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.2; }
+            100% { opacity: 1; }
+        }
     </style>
 </head>
 <body>
 
-    <h1>HỮU DUY CINEMA</h1>
-    <p class="subtitle">Đéo đặt vé thì đi về, đừng có nhìn!</p>
-
-    <ul class="showcase">
-        <li><div class="seat"></div> <small>Còn trống</small></li>
-        <li><div class="seat selected"></div> <small>Đang chọn</small></li>
-        <li><div class="seat occupied"></div> <small>Hết chỗ</small></li>
-    </ul>
-
     <div class="container">
-        <div class="screen">MÀN HÌNH ĐÂY EM</div>
+        <h1>HUU DUY MONEY</h1>
+        <p class="subtitle">Tỷ giá "đen" do đại ca tự quyết!</p>
 
-        <div class="row">
-            <div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div>
+        <div class="converter-box">
+            <div class="input-group">
+                <label>Nhập số tiền VNĐ (Tiền Việt)</label>
+                <input type="number" id="vnd-amount" placeholder="Gõ số vào đây..." oninput="convertMoney()">
+            </div>
+            
+            <div class="swap-icon">⇌</div>
+            
+            <div class="input-group">
+                <label>Nhập số lượng USD (Tiền Đô-la)</label>
+                <input type="number" id="usd-amount" placeholder="Hoặc gõ số vào đây..." oninput="convertMoneyUsd()">
+            </div>
         </div>
-        <div class="row">
-            <div class="seat"></div><div class="seat occupied"></div><div class="seat occupied"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div>
+
+        <div class="result-box">
+            <div class="result-text">Mày sẽ đổi được:</div>
+            <div id="result-value">0 USD</div>
         </div>
-        <div class="row">
-            <div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat occupied"></div><div class="seat"></div>
-        </div>
-        <div class="row">
-            <div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div>
+
+        <button onclick="showAlert()">Chốt Đổi Ngay!</button>
+
+        <div class="ad-banner">
+            CẢNH BÁO: TỶ GIÁ DO ĐẠI CA DUY TỰ QUYẾT. MIỄN KHIẾU NẠI!
         </div>
     </div>
-
-    <div class="total-box">
-        Đã chọn <span id="count">0</span> ghế. Tổng tiền: <span id="total">0</span> VNĐ
-    </div>
-
-    <button onclick="bookTicket()">Đặt Vé Ngay!</button>
 
     <script>
-        const container = document.querySelector('.container');
-        const seats = document.querySelectorAll('.row .seat:not(.occupied)');
-        const count = document.getElementById('count');
-        const total = document.getElementById('total');
-        const ticketPrice = 90000; // Giá vé 90k cho nó rẻ
+        // Tỷ giá "đen" siêu cục súc của đại ca Duy
+        const EXCHANGE_RATE = 25150; // 1 USD = 25150 VNĐ
 
-        // Hàm cập nhật số lượng và tiền
-        function updateSelectedCount() {
-            const selectedSeats = document.querySelectorAll('.row .seat.selected');
-            const selectedSeatsCount = selectedSeats.length;
-            
-            count.innerText = selectedSeatsCount;
-            total.innerText = (selectedSeatsCount * ticketPrice).toLocaleString('vi-VN');
+        const vndInput = document.getElementById('vnd-amount');
+        const usdInput = document.getElementById('usd-amount');
+        const resultValue = document.getElementById('result-value');
+
+        // Hàm đổi từ VNĐ sang USD
+        function convertMoney() {
+            const vnd = parseFloat(vndInput.value);
+            if (!isNaN(vnd) && vnd > 0) {
+                const usd = vnd / EXCHANGE_RATE;
+                resultValue.innerText = usd.toFixed(2) + ' USD';
+                resultValue.style.color = '#ffcc00'; // Màu vàng
+            } else {
+                resetResult();
+            }
         }
 
-        // Sự kiện click chọn ghế
-        container.addEventListener('click', (e) => {
-            if (e.target.classList.contains('seat') && !e.target.classList.contains('occupied')) {
-                e.target.classList.toggle('selected');
-                updateSelectedCount();
+        // Hàm đổi từ USD sang VNĐ
+        function convertMoneyUsd() {
+            const usd = parseFloat(usdInput.value);
+            if (!isNaN(usd) && usd > 0) {
+                const vnd = usd * EXCHANGE_RATE;
+                resultValue.innerText = vnd.toLocaleString('vi-VN') + ' VNĐ';
+                resultValue.style.color = '#00ff88'; // Màu xanh lá cho tiền Việt
+            } else {
+                resetResult();
             }
-        });
+        }
 
-        // Nút đặt vé ảo ma
-        function bookTicket() {
-            const selectedCount = document.querySelectorAll('.row .seat.selected').length;
-            if (selectedCount > 0) {
-                alert('Chúc mừng em đã tốn ' + (selectedCount * ticketPrice).toLocaleString('vi-VN') + ' VNĐ cho đại ca Duy!');
+        // Hàm reset kết quả
+        function resetResult() {
+            resultValue.innerText = '0 USD';
+            resultValue.style.color = '#ffcc00';
+        }
+
+        // Nút chốt đổi ảo ma
+        function showAlert() {
+            const result = resultValue.innerText;
+            if (result !== '0 USD') {
+                alert('CHÚC MỪNG EM! Đã đổi thành công ' + result + ' qua "tỷ giá đen" của đại ca Duy! Phí đổi là 99.99%. Sẽ có người đến thu tiền sau 5 phút!');
                 location.reload(); // Đặt xong cho load lại trang luôn
             } else {
-                alert('Mày đéo chọn ghế thì đặt cái gì?');
+                alert('Mày đéo nhập số tiền thì đổi cái gì? Có muốn ăn đấm không?');
             }
         }
     </script>
