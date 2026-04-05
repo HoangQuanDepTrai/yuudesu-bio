@@ -3,92 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hữu Duy Bio</title>
+    <title>Hữu Duy Bio - Đừng Có Vào!</title>
     <style>
-        /* CSS LỎ CHO HỮU DUY */
+        /* PHONG CÁCH CỤC SÚC BỞI ANH AI */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Màu nền gradient cho nó sang */
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 10s ease infinite; /* Nền chạy nhảy cho chóng mặt chơi */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            overflow: hidden;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .card {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            width: 320px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2.5rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            width: 350px;
             text-align: center;
+            border: 5px solid #000;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: rotate(2deg) scale(1.05); /* Di chuột vào là nó lệch lạc ngay */
         }
 
         .avatar {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            background: #764ba2;
-            margin: 0 auto 1rem;
+            background: #000;
+            margin: 0 auto 1.5rem;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 40px;
-            color: white;
-            font-weight: bold;
-            border: 4px solid #f0f2f5;
+            font-size: 50px;
+            color: #fff;
+            font-weight: 900;
+            border: 6px double #ff0055;
+            animation: shake 0.5s infinite; /* Avatar rung bần bật */
+        }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
         }
 
         h1 {
             margin: 10px 0;
-            font-size: 24px;
-            color: #333;
+            font-size: 28px;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        p {
-            color: #666;
-            font-size: 14px;
+        .bio-text {
+            color: #ff0055;
+            font-weight: bold;
+            font-style: italic;
             margin-bottom: 1.5rem;
         }
 
         .links {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
 
         .link-btn {
             text-decoration: none;
-            background: #f8f9fa;
-            color: #333;
-            padding: 12px;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: 0.3s;
-            border: 1px solid #ddd;
+            background: #000;
+            color: white;
+            padding: 15px;
+            border-radius: 50px;
+            font-weight: 800;
+            transition: 0.2s;
+            border: 2px solid transparent;
         }
 
         .link-btn:hover {
-            background: #764ba2;
-            color: white;
-            transform: translateY(-3px);
+            background: #fff;
+            color: #000;
+            border: 2px solid #000;
+            box-shadow: 5px 5px 0px #ff0055;
+        }
+
+        /* Nút đặc biệt cho GitHub của em */
+        .github-special {
+            background: #24292e !important;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(36, 41, 46, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(36, 41, 46, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(36, 41, 46, 0); }
         }
     </style>
 </head>
 <body>
 
     <div class="card">
-        <div class="avatar">HD</div>
-        <h1>Hữu Duy</h1>
-        <p>Chào mừng đến với trang cá nhân của bố!!</p>
+        <div class="avatar">DZ</div> <h1>Hữu Duy Official</h1>
+        <p class="bio-text">Đéo có gì ở đây đâu, đừng có bấm!</p>
         
         <div class="links">
-            <a href="#" class="link-btn" target="_blank">Facebook</a>
-            <a href="#" class="link-btn" target="_blank">Zalo</a>
-            <a href="#" class="link-btn" target="_blank">Instagram</a>
-            <a href="https://github.com/hoangquandeptrai" class="link-btn" target="_blank">GitHub của tui</a>
+            <a href="https://facebook.com" class="link-btn" target="_blank">Nơi Bốc Phét (Facebook)</a>
+            <a href="https://zalo.me" class="link-btn" target="_blank">Nhắn Tin Đòi Nợ (Zalo)</a>
+            <a href="https://instagram.com" class="link-btn" target="_blank">Sống Ảo Tí (Insta)</a>
+            <a href="https://github.com/hoangquandeptrai" class="link-btn github-special" target="_blank">Kho Code Lỏ (GitHub)</a>
         </div>
+        
+        <p style="margin-top: 20px; font-size: 10px; color: #999;">© 2026 - Bản quyền thuộc về đại ca Duy</p>
     </div>
 
 </body>
