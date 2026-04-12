@@ -1,31 +1,34 @@
-# 🚀 [Tên Dự Án Của Bạn]
+# 🎬 DatVeXemPhim - Hệ Thống Đặt Vé Xem Phim Trực Tuyến
 
-[![Status](https://img.shields.io/badge/Status-Active-brightgreen)]()
-[![License](https://img.shields.io/badge/License-MIT-blue)]()
-[![Version](https://img.shields.io/badge/Version-1.0.0-orange)]()
+[![Status](https://img.shields.io/badge/Status-In--Development-yellow)]()
+[![Framework](https://img.shields.io/badge/Framework-React/NextJS-blue)]()
+[![Backend](https://img.shields.io/badge/Backend-NodeJS/NestJS-green)]()
 
-**Mô tả ngắn:** Một ứng dụng tuyệt vời giúp giải quyết vấn đề [X] bằng công nghệ [Y]. Giao diện hiện đại, dễ sử dụng và hiệu năng cực cao.
+**DatVeXemPhim** là một nền tảng web hiện đại cho phép người dùng xem lịch chiếu, chọn phim, chọn ghế ngồi và thanh toán vé xem phim trực tuyến một cách nhanh chóng và tiện lợi.
 
 ---
 
 ## 📸 Giao diện ứng dụng (Screenshots)
 
-Ở đây bạn hãy chèn các hình ảnh đẹp nhất về dự án của mình:
-
-| Trang Chủ | Chế độ Dark Mode |
+| Trang chủ & Lịch chiếu | Chọn Ghế (Real-time) |
 | :---: | :---: |
-| <img src="link_anh_1.png" width="400"> | <img src="link_anh_2.png" width="400"> |
-
-*Nếu chưa có ảnh, bạn có thể dùng các mockup hoặc sơ đồ tính năng.*
+| <img src="https://via.placeholder.com/400x250?text=Home+Page" width="400"> | <img src="https://via.placeholder.com/400x250?text=Seat+Selection" width="400"> |
 
 ---
 
-## ✨ Tính năng chính
+## ✨ Tính năng nổi bật
 
-- ✅ **Xác thực:** Đăng nhập, đăng ký qua Email và Google.
-- 📊 **Dashboard:** Biểu đồ hiển thị dữ liệu thời gian thực.
-- 🌓 **Giao diện:** Tự động chuyển đổi Dark/Light mode.
-- 📱 **Responsive:** Hiển thị hoàn hảo trên cả điện thoại và máy tính.
+### 👤 Đối với Người dùng (Customer)
+- **Duyệt phim:** Xem danh sách phim đang chiếu và sắp chiếu với trailer HD.
+- **Lọc phim:** Tìm kiếm phim theo thể loại, rạp hoặc ngày chiếu.
+- **Đặt ghế Real-time:** Chọn ghế ngồi và xem trạng thái ghế (đã đặt/đang chọn) theo thời gian thực (sử dụng Socket.io).
+- **Thanh toán:** Tích hợp cổng thanh toán (VNPAY/Momo/Stripe).
+- **Lịch sử đặt vé:** Xem lại các vé đã mua và mã QR để check-in tại rạp.
+
+### 🔐 Đối với Quản trị viên (Admin)
+- **Quản lý Phim:** Thêm/Sửa/Xóa phim, quản lý trailer và thời lượng.
+- **Quản lý Lịch chiếu:** Sắp xếp suất chiếu theo phòng và rạp.
+- **Thống kê doanh thu:** Biểu đồ doanh thu theo ngày/tháng/năm.
 
 ---
 
@@ -33,34 +36,31 @@
 
 | Thành phần | Công nghệ |
 | :--- | :--- |
-| **Frontend** | React.js, Tailwind CSS, Redux Toolkit |
-| **Backend** | Node.js, Express.js |
+| **Frontend** | ReactJS / Next.js, Tailwind CSS, Redux Toolkit |
+| **Backend** | Node.js (Express/NestJS) |
 | **Database** | MongoDB / PostgreSQL |
-| **DevOps** | Docker, GitHub Actions |
+| **Real-time** | Socket.io (cho việc chọn ghế) |
+| **Thanh toán** | VNPAY API / Momo API |
 
 ---
 
 ## ⚙️ Hướng dẫn cài đặt
 
-Làm theo các bước sau để chạy dự án trên máy cá nhân:
-
 ### 1. Yêu cầu hệ thống
-- Node.js >= 16.x
-- npm hoặc yarn
+- Node.js (v18.x trở lên)
+- MongoDB hoặc PostgreSQL
 
-### 2. Các bước thực hiện
+### 2. Cài đặt các bước
 ```bash
-# Clone dự án từ GitHub
-git clone [https://github.com/user/repo-name.git](https://github.com/user/repo-name.git)
+# Clone repository
+git clone [https://github.com/user/datVeXemPhim.git](https://github.com/user/datVeXemPhim.git)
 
-# Di chuyển vào thư mục dự án
-cd repo-name
-
-# Cài đặt các thư viện phụ thuộc
+# Cài đặt Backend
+cd backend
 npm install
-
-# Tạo file .env và cấu hình các biến môi trường
-cp .env.example .env
-
-# Chạy ứng dụng ở chế độ phát triển
 npm run dev
+
+# Cài đặt Frontend
+cd ../frontend
+npm install
+npm run start
